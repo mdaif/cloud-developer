@@ -60,6 +60,11 @@ import { Request, Response } from 'express';
     }).catch((errorMessage) => {
       res.status(500).send({'message': errorMessage});
     });
+    process.on('unhandledRejection', (reason, promise) => {
+      console.log('Unhandled Rejection at:', reason)
+      res.status(500).send({'message': 'Unexpected error happend. Please contact support team.'});
+    });
+    
 
   });
   //! END @TODO1
@@ -77,3 +82,4 @@ import { Request, Response } from 'express';
       console.log( `press CTRL+C to stop server` );
   } );
 })();
+
