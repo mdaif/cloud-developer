@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 import { Request, Response } from 'express';
+import { requireAuth } from './middlewares';
 
 
 (async () => {
@@ -32,7 +33,7 @@ import { Request, Response } from 'express';
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
-  app.get('/filteredimage', async (req: Request, res: Response) => {
+  app.get('/filteredimage', requireAuth, async (req: Request, res: Response) => {
     res.on('finish', () => {
       const directoryPath = path.join(__dirname, 'util/tmp');
       //passsing directoryPath and callback function
