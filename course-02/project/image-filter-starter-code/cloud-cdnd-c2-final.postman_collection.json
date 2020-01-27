@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Get invalid image",
+			"name": "Get invalid image (protected resource)",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -111,6 +111,34 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "image_url not present",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3Vyc2UiOiJjbG91ZCBkZXZlbG9wZXIiLCJuYW1lIjoiTW9oYW1lZCBEYWlmIn0.p8yhxcwV5mSQd0v2oeYFDt2-Xa7PCgsDDCvPRUL_4Mo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{HOST}}/filteredimage",
+					"protocol": "http",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"filteredimage"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -137,21 +165,21 @@
 	],
 	"variable": [
 		{
-			"id": "b1b5779b-b6a5-413b-944d-1d606bf3e0cb",
+			"id": "ddc2049f-6c94-4d8b-b23f-c62bca04f743",
 			"key": "HOST",
 			"value": "localhost:8082",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "8c1fa594-625e-439c-97e8-6eb667feec39",
+			"id": "bf86ee41-beb3-4558-abfa-67e125412e6d",
 			"key": "HOST",
 			"value": "localhost:8082",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "f4024158-9f79-45d2-8e9d-c04a3bba143f",
+			"id": "b84a9c7e-efdc-4437-a1bc-5248bce8094f",
 			"key": "HOST",
 			"value": "image-filter.daif.me",
 			"type": "string"
