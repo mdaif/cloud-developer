@@ -1,6 +1,6 @@
 # Submission Notes
 1. The API endpoint http://image-filter-starter-code-dev222.us-east-1.elasticbeanstalk.com/
-2. The API endpoint can be also accessed via image-filter.daif.me , but I used my existing domain on name.com and not Route 53.
+2. The API endpoint can be also accessed via http://image-filter.daif.me , but I used my existing domain on name.com and not Route 53.
 3. The exported Postman collection has requests and tests for every case.
 4. The provided image is protected (returns 403 access denied for normal GET requests).
 
