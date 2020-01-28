@@ -2,7 +2,8 @@
 1. The API endpoint http://image-filter-starter-code-dev222.us-east-1.elasticbeanstalk.com/
 2. The API endpoint can be also accessed via http://image-filter.daif.me , but I used my existing domain on name.com and not Route 53.
 3. The exported Postman collection has requests and tests for every case.
-4. The provided image is protected (returns 403 access denied for normal GET requests).
+4. The provided image is protected (returns 403 access denied for normal GET requests). This is handled as a part of handling all errors.
+5. I used JWT authentication and the exported Postman collection has the right token.
 
 # Udagram Image Filtering Microservice
 
