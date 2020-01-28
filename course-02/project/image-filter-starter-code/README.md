@@ -4,6 +4,8 @@
 3. The exported Postman collection has requests and tests for every case.
 4. The provided image is protected (returns 403 access denied for normal GET requests). This is handled as a part of handling all errors.
 5. I used JWT authentication and the exported Postman collection has the right token.
+6. Development is merged to master and tag v0.1 is added.
+7. README updates are added directly on Github. That might cause some annoying commits but they could be squashed.
 
 # Udagram Image Filtering Microservice
 
