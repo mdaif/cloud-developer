@@ -1,6 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import path from 'path';
+import fs from 'fs';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
+import { Request, Response } from 'express';
+import { requireAuth } from './middlewares';
+
 
 (async () => {
 
@@ -28,7 +33,41 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   //   the filtered image file [!!TIP res.sendFile(filteredpath); might be useful]
 
   /**************************************************************************** */
+  app.get('/filteredimage', requireAuth, async (req: Request, res: Response) => {
+    res.on('finish', () => {
+      const directoryPath = path.join(__dirname, 'util/tmp');
+      //passsing directoryPath and callback function
+      fs.readdir(directoryPath, function (err, files) {
+          //handling error
+          if (err) {
+              return console.log('Unable to scan directory: ' + err);
+          }
+          const absolutePaths: Array<string> = [];
+          files.forEach((file) => {
+            absolutePaths.push(path.join(directoryPath, file))
+          })
+          deleteLocalFiles(absolutePaths);
+      });
+    });
 
+    let {image_url} = req.query;
+    if (!image_url) {
+      return res.status(400).send({'message': 'image_url is required or malfromed'})
+    }
+
+    const filteredImagePathPromise = filterImageFromURL(image_url);
+    filteredImagePathPromise.then((path) => {
+      res.status(200).sendFile(path);
+    }).catch((errorMessage) => {
+      res.status(500).send({'message': errorMessage});
+    });
+    process.on('unhandledRejection', (reason, promise) => {
+      console.log('Unhandled Rejection at:', reason)
+      res.status(500).send({'message': 'Unexpected error happend. Please contact support team.'});
+    });
+    
+
+  });
   //! END @TODO1
   
   // Root Endpoint
@@ -44,3 +83,4 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
       console.log( `press CTRL+C to stop server` );
   } );
 })();
+
