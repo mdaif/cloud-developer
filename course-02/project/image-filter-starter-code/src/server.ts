@@ -56,16 +56,16 @@ import { requireAuth } from './middlewares';
     }
 
     const filteredImagePathPromise = filterImageFromURL(image_url);
+    
+    filteredImagePathPromise.catch(err => {
+      console.error('a7a');
+    });
+
     filteredImagePathPromise.then((path) => {
       res.status(200).sendFile(path);
     }).catch((errorMessage) => {
-      res.status(500).send({'message': errorMessage});
+      res.status(400).send({'message': errorMessage});
     });
-    process.on('unhandledRejection', (reason, promise) => {
-      console.log('Unhandled Rejection at:', reason)
-      res.status(500).send({'message': 'Unexpected error happend. Please contact support team.'});
-    });
-    
 
   });
   //! END @TODO1
@@ -84,3 +84,6 @@ import { requireAuth } from './middlewares';
   } );
 })();
 
+process.on('unhandledRejection', (reason, promise) => {
+  console.log('Unhandled Rejection at:', reason)
+});
