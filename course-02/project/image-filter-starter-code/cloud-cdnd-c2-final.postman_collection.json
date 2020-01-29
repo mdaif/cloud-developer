@@ -7,6 +7,20 @@
 	"item": [
 		{
 			"name": "Get invalid image (protected resource)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e0f6d9c3-3734-488c-8a1d-6149ee408749",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -165,21 +179,21 @@
 	],
 	"variable": [
 		{
-			"id": "ddc2049f-6c94-4d8b-b23f-c62bca04f743",
+			"id": "47459d6a-d700-4ecb-a4b6-d7df433839ce",
 			"key": "HOST",
 			"value": "localhost:8082",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "bf86ee41-beb3-4558-abfa-67e125412e6d",
+			"id": "1624f535-82d4-4928-bb84-d8c1bb7a3a7d",
 			"key": "HOST",
 			"value": "localhost:8082",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "b84a9c7e-efdc-4437-a1bc-5248bce8094f",
+			"id": "b87504de-5d1f-4516-a923-efaa7e2f31d9",
 			"key": "HOST",
 			"value": "image-filter.daif.me",
 			"type": "string"
