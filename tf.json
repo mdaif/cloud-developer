@@ -8,7 +8,7 @@
       }
     ],
     "value": {
-      "endpoint": "udacitycluster-api-lb-452323581.us-east-1.elb.amazonaws.com"
+      "endpoint": "udacitycluster-api-lb-1964766957.us-east-1.elb.amazonaws.com"
     }
   },
   "kubeone_hosts": {
@@ -51,21 +51,21 @@
     ],
     "value": {
       "control_plane": {
-        "bastion": "107.20.82.220",
+        "bastion": "34.201.145.83",
         "bastion_port": 22,
         "bastion_user": "ubuntu",
         "cloud_provider": "aws",
         "cluster_name": "udacitycluster",
         "hostnames": [
-          "ip-172-31-196-59.ec2.internal",
-          "ip-172-31-197-91.ec2.internal",
-          "ip-172-31-198-207.ec2.internal"
+          "ip-172-31-244-146.ec2.internal",
+          "ip-172-31-245-7.ec2.internal",
+          "ip-172-31-246-71.ec2.internal"
         ],
-        "leader_ip": "172.31.196.59",
+        "leader_ip": "172.31.244.146",
         "private_address": [
-          "172.31.196.59",
-          "172.31.197.91",
-          "172.31.198.207"
+          "172.31.244.146",
+          "172.31.245.7",
+          "172.31.246.71"
         ],
         "ssh_agent_socket": "env:SSH_AUTH_SOCK",
         "ssh_port": 22,
@@ -247,9 +247,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-020d832bae57233b8"
+              "sg-0c92b7d11353042f0"
             ],
-            "subnetId": "subnet-0b9365e7a80a7430f",
+            "subnetId": "subnet-09ddcbfdcb737ea63",
             "tags": {
               "udacitycluster-workers": ""
             },
@@ -277,9 +277,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-020d832bae57233b8"
+              "sg-0c92b7d11353042f0"
             ],
-            "subnetId": "subnet-0a9e077fa534ce260",
+            "subnetId": "subnet-01502482bd8fde06e",
             "tags": {
               "udacitycluster-workers": ""
             },
@@ -307,9 +307,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-020d832bae57233b8"
+              "sg-0c92b7d11353042f0"
             ],
-            "subnetId": "subnet-0cc0d8ffbba54aeb1",
+            "subnetId": "subnet-097b503e3ff6d51fb",
             "tags": {
               "udacitycluster-workers": ""
             },
