@@ -1,0 +1,330 @@
+{
+  "kubeone_api": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "endpoint": "string"
+      }
+    ],
+    "value": {
+      "endpoint": "udacitycluster-api-lb-336631733.us-east-1.elb.amazonaws.com"
+    }
+  },
+  "kubeone_hosts": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "control_plane": [
+          "object",
+          {
+            "bastion": "string",
+            "bastion_port": "number",
+            "bastion_user": "string",
+            "cloud_provider": "string",
+            "cluster_name": "string",
+            "hostnames": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "leader_ip": "string",
+            "private_address": [
+              "tuple",
+              [
+                "string",
+                "string",
+                "string"
+              ]
+            ],
+            "ssh_agent_socket": "string",
+            "ssh_port": "number",
+            "ssh_private_key_file": "string",
+            "ssh_user": "string"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "control_plane": {
+        "bastion": "3.87.116.24",
+        "bastion_port": 22,
+        "bastion_user": "ubuntu",
+        "cloud_provider": "aws",
+        "cluster_name": "udacitycluster",
+        "hostnames": [
+          "ip-172-31-46-209.ec2.internal",
+          "ip-172-31-47-223.ec2.internal",
+          "ip-172-31-48-190.ec2.internal"
+        ],
+        "leader_ip": "172.31.46.209",
+        "private_address": [
+          "172.31.46.209",
+          "172.31.47.223",
+          "172.31.48.190"
+        ],
+        "ssh_agent_socket": "env:SSH_AUTH_SOCK",
+        "ssh_port": 22,
+        "ssh_private_key_file": "",
+        "ssh_user": "ubuntu"
+      }
+    }
+  },
+  "kubeone_workers": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "udacitycluster-us-east-1a": [
+          "object",
+          {
+            "providerSpec": [
+              "object",
+              {
+                "cloudProviderSpec": [
+                  "object",
+                  {
+                    "ami": "string",
+                    "availabilityZone": "string",
+                    "diskIops": "number",
+                    "diskSize": "number",
+                    "diskType": "string",
+                    "instanceProfile": "string",
+                    "instanceType": "string",
+                    "region": "string",
+                    "securityGroupIDs": [
+                      "tuple",
+                      [
+                        "string"
+                      ]
+                    ],
+                    "subnetId": "string",
+                    "tags": [
+                      "object",
+                      {
+                        "udacitycluster-workers": "string"
+                      }
+                    ],
+                    "vpcId": "string"
+                  }
+                ],
+                "operatingSystem": "string",
+                "operatingSystemSpec": [
+                  "object",
+                  {
+                    "distUpgradeOnBoot": "bool"
+                  }
+                ],
+                "sshPublicKeys": [
+                  "tuple",
+                  [
+                    "string"
+                  ]
+                ]
+              }
+            ],
+            "replicas": "number"
+          }
+        ],
+        "udacitycluster-us-east-1b": [
+          "object",
+          {
+            "providerSpec": [
+              "object",
+              {
+                "cloudProviderSpec": [
+                  "object",
+                  {
+                    "ami": "string",
+                    "availabilityZone": "string",
+                    "diskIops": "number",
+                    "diskSize": "number",
+                    "diskType": "string",
+                    "instanceProfile": "string",
+                    "instanceType": "string",
+                    "region": "string",
+                    "securityGroupIDs": [
+                      "tuple",
+                      [
+                        "string"
+                      ]
+                    ],
+                    "subnetId": "string",
+                    "tags": [
+                      "object",
+                      {
+                        "udacitycluster-workers": "string"
+                      }
+                    ],
+                    "vpcId": "string"
+                  }
+                ],
+                "operatingSystem": "string",
+                "operatingSystemSpec": [
+                  "object",
+                  {
+                    "distUpgradeOnBoot": "bool"
+                  }
+                ],
+                "sshPublicKeys": [
+                  "tuple",
+                  [
+                    "string"
+                  ]
+                ]
+              }
+            ],
+            "replicas": "number"
+          }
+        ],
+        "udacitycluster-us-east-1c": [
+          "object",
+          {
+            "providerSpec": [
+              "object",
+              {
+                "cloudProviderSpec": [
+                  "object",
+                  {
+                    "ami": "string",
+                    "availabilityZone": "string",
+                    "diskIops": "number",
+                    "diskSize": "number",
+                    "diskType": "string",
+                    "instanceProfile": "string",
+                    "instanceType": "string",
+                    "region": "string",
+                    "securityGroupIDs": [
+                      "tuple",
+                      [
+                        "string"
+                      ]
+                    ],
+                    "subnetId": "string",
+                    "tags": [
+                      "object",
+                      {
+                        "udacitycluster-workers": "string"
+                      }
+                    ],
+                    "vpcId": "string"
+                  }
+                ],
+                "operatingSystem": "string",
+                "operatingSystemSpec": [
+                  "object",
+                  {
+                    "distUpgradeOnBoot": "bool"
+                  }
+                ],
+                "sshPublicKeys": [
+                  "tuple",
+                  [
+                    "string"
+                  ]
+                ]
+              }
+            ],
+            "replicas": "number"
+          }
+        ]
+      }
+    ],
+    "value": {
+      "udacitycluster-us-east-1a": {
+        "providerSpec": {
+          "cloudProviderSpec": {
+            "ami": "ami-046842448f9e74e7d",
+            "availabilityZone": "us-east-1a",
+            "diskIops": 500,
+            "diskSize": 50,
+            "diskType": "gp2",
+            "instanceProfile": "udacitycluster-host",
+            "instanceType": "t3.medium",
+            "region": "us-east-1",
+            "securityGroupIDs": [
+              "sg-05f7de6ddbf544332"
+            ],
+            "subnetId": "subnet-0b8536f0575c7b75b",
+            "tags": {
+              "udacitycluster-workers": ""
+            },
+            "vpcId": "vpc-274a695d"
+          },
+          "operatingSystem": "ubuntu",
+          "operatingSystemSpec": {
+            "distUpgradeOnBoot": false
+          },
+          "sshPublicKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+          ]
+        },
+        "replicas": 1
+      },
+      "udacitycluster-us-east-1b": {
+        "providerSpec": {
+          "cloudProviderSpec": {
+            "ami": "ami-046842448f9e74e7d",
+            "availabilityZone": "us-east-1b",
+            "diskIops": 500,
+            "diskSize": 50,
+            "diskType": "gp2",
+            "instanceProfile": "udacitycluster-host",
+            "instanceType": "t3.medium",
+            "region": "us-east-1",
+            "securityGroupIDs": [
+              "sg-05f7de6ddbf544332"
+            ],
+            "subnetId": "subnet-03322ef4636012fa8",
+            "tags": {
+              "udacitycluster-workers": ""
+            },
+            "vpcId": "vpc-274a695d"
+          },
+          "operatingSystem": "ubuntu",
+          "operatingSystemSpec": {
+            "distUpgradeOnBoot": false
+          },
+          "sshPublicKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+          ]
+        },
+        "replicas": 1
+      },
+      "udacitycluster-us-east-1c": {
+        "providerSpec": {
+          "cloudProviderSpec": {
+            "ami": "ami-046842448f9e74e7d",
+            "availabilityZone": "us-east-1c",
+            "diskIops": 500,
+            "diskSize": 50,
+            "diskType": "gp2",
+            "instanceProfile": "udacitycluster-host",
+            "instanceType": "t3.medium",
+            "region": "us-east-1",
+            "securityGroupIDs": [
+              "sg-05f7de6ddbf544332"
+            ],
+            "subnetId": "subnet-0740fad4e6ce3329a",
+            "tags": {
+              "udacitycluster-workers": ""
+            },
+            "vpcId": "vpc-274a695d"
+          },
+          "operatingSystem": "ubuntu",
+          "operatingSystemSpec": {
+            "distUpgradeOnBoot": false
+          },
+          "sshPublicKeys": [
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+          ]
+        },
+        "replicas": 1
+      }
+    }
+  }
+}
