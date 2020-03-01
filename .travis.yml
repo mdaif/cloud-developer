@@ -1,30 +1,45 @@
-language: minimal
+sudo: required
+# We need the systemd for the kubeadm and it's default from 16.04+
+dist: xenial
 services: docker
 env:
-  global: 
-    - DOCKER_COMPOSE_VERSION=1.23.2 
-    - AWS_ACCESS_KEY_ID=AKIARTPVFGK3W5MSZVHP
-    - AWS_SECRET_KEY=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
-before_install:
-- wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
-- unzip terraform_0.12.21_linux_amd64.zip
-- sudo mv terraform /usr/local/bin/terraform
-- docker -v && docker-compose -v
+  global:
+    - CHANGE_MINIKUBE_NONE_USER=true
+    - MINIKUBE_WANTUPDATENOTIFICATION=false
+    - MINIKUBE_WANTREPORTERRORPROMPT=false
+    - MINIKUBE_HOME=$HOME
+    - CHANGE_MINIKUBE_NONE_USER=true
+    - KUBECONFIG=$HOME/.kube/config
+    - DOCKER_COMPOSE_VERSION=1.23.2
+
+before_script:
+# Download kubectl, which is a requirement for using minikube.
+- curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/linux/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
+# Download minikube.
+- curl -Lo minikube https://storage.googleapis.com/minikube/releases/v1.4.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+- mkdir -p $HOME/.kube $HOME/.minikube
+- touch $KUBECONFIG
+- sudo minikube start --vm-driver=none --kubernetes-version=v1.16.0
+- "sudo chown -R travis: /home/travis/.minikube/"
 - sudo rm /usr/local/bin/docker-compose
-- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
-  -s`-`uname -m` > docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
-- curl -LO https://github.com/kubermatic/kubeone/releases/download/v0.10.0/kubeone_0.10.0_linux_amd64.zip
-- unzip kubeone_0.10.0_linux_amd64.zip -d kubeone_0.10.0_linux_amd64
-- sudo mv kubeone_0.10.0_linux_amd64/kubeone /usr/local/bin
-- kubeone install config.yaml --tfjson ./tf.json
-- curl -LO https://storage.googleapis.com/kubernetes-release/release/1.17.3/bin/linux/amd64/kubectl
-- chmod +x ./kubectl
-- sudo mv ./kubectl /usr/local/bin/kubectl
-- kubectl --kubeconfig=udacitycluster-kubeconfig
-install:
-- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
-  build --parallel
-- kubectl -f course-03/exercises/udacity-c3-deployment/k8s/
-- kubectl get pod
+script:
+# Build images
+- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel
+# Push images to Dockerhub repo
+- docker-compose -f docker-compose-build.yaml push
+# Following is just to demo that the kubernetes cluster works.
+- kubectl cluster-info
+# Verify kube-addon-manager.
+# kube-addon-manager is responsible for managing other kubernetes components, such as kube-dns, dashboard, storage-provisioner..
+- JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n kube-system get pods -lcomponent=kube-addon-manager -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for kube-addon-manager to be available"; kubectl get pods --all-namespaces; done
+# Wait for kube-dns to be ready.
+- JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n kube-system get pods -lk8s-app=kube-dns -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for kube-dns to be available"; kubectl get pods --all-namespaces; done
+# Deploy all services and pods.
+- kubectl apply -f course-03/exercises/udacity-c3-deployment/k8s/
+# Make sure created pod is scheduled and running.
+- JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n default get pods -lapp=udagram-app -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for Udagram app deployment to be available"; kubectl get pods -n default; done
+# Get detailed pod info.
+- kubect get pod -o wide
