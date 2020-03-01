@@ -1,24 +1,30 @@
 language: minimal
 services: docker
 env:
-  global:
-  - secure: AHPCTRUGpnLhlaKoJk6UOolCfLWtippgbElaDA8IMYT+9ek9q6r/ZT5/y0L95qFbRpnJeAAkFvyHRcxrwHV7D1+M6bvbgLlixC+b2i73Evv/D5nxqRd/pqmzuSFXvx7gmql+GZY6qFvWvkWePegBDrA4zOOmN/A18uIOoIry+1PAh0+DZOlNPFOOHV1YMfAQaTjARF+nwjSU0I6r5cskfoDlPPS3bD0sQzj9vOvA/A1hyPWfSq2ygwNCzwaJxjm72tc81mXg7nWklp8L3ZLyZfMdM2YBaV6PNQsbWWNZMREDW2uBIefkO6osyEVENrZ37GXs7p/cWHfkAs0mlXWvhRYc6u7/rTlvxH0tR/IPscxBnE10kkYosMoVKndVvLl0WFaEAW8Ldg3tj2mILhklY41xt8QNF/E79DzDI9kBCA6H3xdBuX8HtCYv0XoRbIndlZKLAPv8qe3fE84fMtv+RgOGNxiczxcQ0OFcqGSN7zk+sCNjYICvWulm3w4jKecIDeLC1S7zt361LyTOHogXX/SNp/S/Dd/YiJWYFjMJlSbdHHt6+0kJNCsgAjNWWFNVt8oTPHGnO7gFZnZMs038UiCqgini53JWgt0GJguWEElpD0BIWF6CzECgQy70Dik9iNw1p2J+CzZeyc8vNVbCWGc99sZuIJxMXRLkSyZR7bk=
-  - secure: XHY4RBgdohUomxnKExQbQV2fA6VI/8mES3BCicn8qRKopUPNN0DxVsKKxkbu3MKnfWXHanK1UuDWxEDN2M49Pfvl1P4chYdK7P4QvpIsEHNB2V3VIKYBWy5iNKVHpif0OWQJyUEBZYOIaODrHstx9rWoVt/sQVnXBCDqxLMSjX19H6X9vy4NL8PcItdb+0b/lg45XjO5lxtQAdV87Ot03mAT33uLe3eIUhAmzlgSZt2sEwIpAnXh4aU4NzxQe84aBgvWn3ImT50rbLPVm9Mpsd1KU6emVLlvY/QHOPy4cmHgTZuELdRsLxo6EAB+2NPzFWy8E7uYDOJnjxAKRkiEfKV+/0OF25hegMKsd3xq/Qa8YMNgOA6iA2B+efI1FsZ+Qvst5QWTyU0z79bI6dSaudiES/QVp+eJT5bdxkFuPPArAY5RaFYJMI8bhuKQEVCGmax0SH28hndSmymKn8fdJBQiuDLfq/hgMnL2uk6a0QjiTAhpEAUl/jycvZRmUKKs4GHpkYSFvlsZgm+L/8XY3XHVdi93n/8fdxBhHxxBGOqN07hnibAnN+a17CBtPgvE7PO0JxL5bChnYG51wNh74yPLkpAmGWJpmVnUbLTI6h1jSZ2bOHxpjngD7I5Ean3CoxmW23sNvoct28oHvcr0gP9HrjNBtNKAGRJNIlhF1vI=
+  global: 
+    - DOCKER_COMPOSE_VERSION=1.23.2 
+    - AWS_ACCESS_KEY_ID=AKIARTPVFGK3W5MSZVHP
+    - AWS_SECRET_KEY=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
 before_install:
+- wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
+- unzip terraform_0.12.21_linux_amd64.zip
+- sudo mv terraform /usr/local/bin/terraform
 - docker -v && docker-compose -v
 - sudo rm /usr/local/bin/docker-compose
-- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
 - chmod +x docker-compose
 - sudo mv docker-compose /usr/local/bin
 - curl -LO https://github.com/kubermatic/kubeone/releases/download/v0.10.0/kubeone_0.10.0_linux_amd64.zip
 - unzip kubeone_0.10.0_linux_amd64.zip -d kubeone_0.10.0_linux_amd64
 - sudo mv kubeone_0.10.0_linux_amd64/kubeone /usr/local/bin
-- kubeone install config.yaml --tfjson .
-- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+- kubeone install config.yaml --tfjson ./tf.json
+- curl -LO https://storage.googleapis.com/kubernetes-release/release/1.17.3/bin/linux/amd64/kubectl
 - chmod +x ./kubectl
 - sudo mv ./kubectl /usr/local/bin/kubectl
 - kubectl --kubeconfig=udacitycluster-kubeconfig
 install:
-- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml build --parallel 
+- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
+  build --parallel
 - kubectl -f course-03/exercises/udacity-c3-deployment/k8s/
 - kubectl get pod
