@@ -1,33 +1,33 @@
 language: minimal
 services: docker
-env:
-  global: 
-    - DOCKER_COMPOSE_VERSION=1.23.2 
-    - AWS_ACCESS_KEY_ID=AKIARTPVFGK3W5MSZVHP
-    - AWS_SECRET_KEY=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
+
 before_install:
-  - ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
-  - eval `ssh-agent -s`
-  - ssh-add
-  - wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
-  - unzip terraform_0.12.21_linux_amd64.zip
-  - sudo mv terraform /usr/local/bin/terraform
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
-    -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-  - curl -LO https://github.com/kubermatic/kubeone/releases/download/v0.10.0/kubeone_0.10.0_linux_amd64.zip
-  - unzip kubeone_0.10.0_linux_amd64.zip -d kubeone_0.10.0_linux_amd64
-  - sudo mv kubeone_0.10.0_linux_amd64/kubeone /usr/local/bin
-  - kubeone install config.yaml --tfjson ./tf.json
-  - curl -LO https://storage.googleapis.com/kubernetes-release/release/1.17.3/bin/linux/amd64/kubectl
-  - chmod +x ./kubectl
-  - sudo mv ./kubectl /usr/local/bin/kubectl
-  - kubectl --kubeconfig=udacitycluster-kubeconfig
+- openssl aes-256-cbc -K $encrypted_75808e5b5cad_key -iv $encrypted_75808e5b5cad_iv
+  -in deploy_rsa.enc -out ~/.ssh/deploy_rsa -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ~/.ssh/deploy_rsa
+- ssh-add ~/.ssh/deploy_rsa
+- wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
+- unzip terraform_0.12.21_linux_amd64.zip
+- sudo mv terraform /usr/local/bin/terraform
+- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname
+  -s`-`uname -m` > docker-compose
+- chmod +x docker-compose
+- sudo mv docker-compose /usr/local/bin
+- curl -LO https://github.com/kubermatic/kubeone/releases/download/v0.10.0/kubeone_0.10.0_linux_amd64.zip
+- unzip kubeone_0.10.0_linux_amd64.zip -d kubeone_0.10.0_linux_amd64
+- sudo mv kubeone_0.10.0_linux_amd64/kubeone /usr/local/bin
+- terraform init
+- kubeone install config.yaml --tfjson ./tf.json
+- curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.17.3/bin/linux/amd64/kubectl
+- chmod +x ./kubectl
+- sudo mv ./kubectl /usr/local/bin/kubectl
+- export KUBECONFIG=$PWD/udacitycluster-kubeconfig
 install:
-  - docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
-    build --parallel
-  - kubectl -f course-03/exercises/udacity-c3-deployment/k8s/
-  # wait for all pods to become ready
-  - JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1; done
-  - kubectl get pod -o wide
+- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
+  build --parallel
+- kubectl apply -f course-03/exercises/udacity-c3-deployment/k8s/
+- JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}';
+  until kubectl get nodes -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do
+  sleep 1; done
+- kubectl get pod -o wide

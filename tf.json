@@ -8,7 +8,7 @@
       }
     ],
     "value": {
-      "endpoint": "udacitycluster-api-lb-1964766957.us-east-1.elb.amazonaws.com"
+      "endpoint": "udacitycluster-api-lb-842810608.us-east-1.elb.amazonaws.com"
     }
   },
   "kubeone_hosts": {
@@ -51,21 +51,21 @@
     ],
     "value": {
       "control_plane": {
-        "bastion": "34.201.145.83",
+        "bastion": "54.82.90.132",
         "bastion_port": 22,
         "bastion_user": "ubuntu",
         "cloud_provider": "aws",
         "cluster_name": "udacitycluster",
         "hostnames": [
-          "ip-172-31-244-146.ec2.internal",
-          "ip-172-31-245-7.ec2.internal",
-          "ip-172-31-246-71.ec2.internal"
+          "ip-172-31-47-55.ec2.internal",
+          "ip-172-31-48-209.ec2.internal",
+          "ip-172-31-49-57.ec2.internal"
         ],
-        "leader_ip": "172.31.244.146",
+        "leader_ip": "172.31.47.55",
         "private_address": [
-          "172.31.244.146",
-          "172.31.245.7",
-          "172.31.246.71"
+          "172.31.47.55",
+          "172.31.48.209",
+          "172.31.49.57"
         ],
         "ssh_agent_socket": "env:SSH_AUTH_SOCK",
         "ssh_port": 22,
@@ -247,9 +247,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-0c92b7d11353042f0"
+              "sg-09d38956fe1dc0b1b"
             ],
-            "subnetId": "subnet-09ddcbfdcb737ea63",
+            "subnetId": "subnet-07c272210949bb8b7",
             "tags": {
               "udacitycluster-workers": ""
             },
@@ -260,7 +260,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDPhVPFKX1CkFv4DZF4tOwqStiiRhjCAdiEc51ARvW5maJ/4uJXjSfjl8g2KN16lsS4tMQFeg3hl5/fOMw4iAsyVh+7HTSI7mHBvSqUhROWFkNjme4xCixst/Y9uCALjElHPc9N3pJeIsEhOJGVhbVUbs0Kx4vCu43BTawdAJovjRDBPxexUmIw1s+CU9l9LobBk0slb5nVLEQqh0xbxMW9qNThjsVnyIQ8iN5MqqArBMZ2ZTELKpceN1gu85IFBeX96l37RVOhZoluxN8lTDlj9LbmWgG0QrU3+f1drkXlteRvjzzcfqiwr89sGsXWbV3aZu1U6DuDCeJcTQe4z76+k4wMENj5/VI997acnScq0/s53qYYftf7QMzQkTNrliUPg2ghEr/qq4rSLiviel2NTgb+F6mqkQAuz42ksEkRkJgY5xhzJ2iZeY51IICsT3u+GJhYZT8WY4A3uaA/zxvdnv7u1YaiOspy4qC4hoPsLe/J7SJQvLfTRiRBIzMVy+tbieGEwrsc1Zwli/eG33he7Zv7JvK1PJogs1Ib5RWpaOHXcL4w16+GvbXyjMa0tl++0OXBYBKYKAjO4vTDkkx/8mzG7m7q4WnhqXB9ZhTtodf28+TI8B9XtKssuoxOOpZfC7zY9GX6TmEZuQxfpDwxFLxoWnLK19DCh4vuqYP4iw== build@travis-ci.org"
           ]
         },
         "replicas": 1
@@ -277,9 +277,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-0c92b7d11353042f0"
+              "sg-09d38956fe1dc0b1b"
             ],
-            "subnetId": "subnet-01502482bd8fde06e",
+            "subnetId": "subnet-001a0897bc62dcd56",
             "tags": {
               "udacitycluster-workers": ""
             },
@@ -290,7 +290,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDPhVPFKX1CkFv4DZF4tOwqStiiRhjCAdiEc51ARvW5maJ/4uJXjSfjl8g2KN16lsS4tMQFeg3hl5/fOMw4iAsyVh+7HTSI7mHBvSqUhROWFkNjme4xCixst/Y9uCALjElHPc9N3pJeIsEhOJGVhbVUbs0Kx4vCu43BTawdAJovjRDBPxexUmIw1s+CU9l9LobBk0slb5nVLEQqh0xbxMW9qNThjsVnyIQ8iN5MqqArBMZ2ZTELKpceN1gu85IFBeX96l37RVOhZoluxN8lTDlj9LbmWgG0QrU3+f1drkXlteRvjzzcfqiwr89sGsXWbV3aZu1U6DuDCeJcTQe4z76+k4wMENj5/VI997acnScq0/s53qYYftf7QMzQkTNrliUPg2ghEr/qq4rSLiviel2NTgb+F6mqkQAuz42ksEkRkJgY5xhzJ2iZeY51IICsT3u+GJhYZT8WY4A3uaA/zxvdnv7u1YaiOspy4qC4hoPsLe/J7SJQvLfTRiRBIzMVy+tbieGEwrsc1Zwli/eG33he7Zv7JvK1PJogs1Ib5RWpaOHXcL4w16+GvbXyjMa0tl++0OXBYBKYKAjO4vTDkkx/8mzG7m7q4WnhqXB9ZhTtodf28+TI8B9XtKssuoxOOpZfC7zY9GX6TmEZuQxfpDwxFLxoWnLK19DCh4vuqYP4iw== build@travis-ci.org"
           ]
         },
         "replicas": 1
@@ -307,9 +307,9 @@
             "instanceType": "t3.medium",
             "region": "us-east-1",
             "securityGroupIDs": [
-              "sg-0c92b7d11353042f0"
+              "sg-09d38956fe1dc0b1b"
             ],
-            "subnetId": "subnet-097b503e3ff6d51fb",
+            "subnetId": "subnet-0da49b7b7a0d3b7bc",
             "tags": {
               "udacitycluster-workers": ""
             },
@@ -320,7 +320,7 @@
             "distUpgradeOnBoot": false
           },
           "sshPublicKeys": [
-            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAyF3Qfll+o78WSFpMazUcablwhebg1ORgw2s9i6/tr/5qMWTnN2CfmLK4AtJ0F7M0XeMyvgF1wd1+jezrWePyDrps7+e06LkcCLOYS7JB+L9JndkXxZxb1E3YJoINDfqLegQHYWtPKqasJJ5LDpWwiVVW57j0ZmG5D0azRwfBQzoi03/q28Ziq+M1lUvZ0jIf0EIGy9TNTS6yv6UACBut/Am4xSJkIrZOnpNno6rLKRcH3j9xeC7idQkiJPV3Dpx13bMk8cN54ocWKEAjNQj9b+7LrJUeYoCpPqqFbA0rCwaDRCkDGBqA7vfEJ3CRMGjThXNPoJkQXIeHPsP9rAL dafadeedo@mohamed-9.local"
+            "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDPhVPFKX1CkFv4DZF4tOwqStiiRhjCAdiEc51ARvW5maJ/4uJXjSfjl8g2KN16lsS4tMQFeg3hl5/fOMw4iAsyVh+7HTSI7mHBvSqUhROWFkNjme4xCixst/Y9uCALjElHPc9N3pJeIsEhOJGVhbVUbs0Kx4vCu43BTawdAJovjRDBPxexUmIw1s+CU9l9LobBk0slb5nVLEQqh0xbxMW9qNThjsVnyIQ8iN5MqqArBMZ2ZTELKpceN1gu85IFBeX96l37RVOhZoluxN8lTDlj9LbmWgG0QrU3+f1drkXlteRvjzzcfqiwr89sGsXWbV3aZu1U6DuDCeJcTQe4z76+k4wMENj5/VI997acnScq0/s53qYYftf7QMzQkTNrliUPg2ghEr/qq4rSLiviel2NTgb+F6mqkQAuz42ksEkRkJgY5xhzJ2iZeY51IICsT3u+GJhYZT8WY4A3uaA/zxvdnv7u1YaiOspy4qC4hoPsLe/J7SJQvLfTRiRBIzMVy+tbieGEwrsc1Zwli/eG33he7Zv7JvK1PJogs1Ib5RWpaOHXcL4w16+GvbXyjMa0tl++0OXBYBKYKAjO4vTDkkx/8mzG7m7q4WnhqXB9ZhTtodf28+TI8B9XtKssuoxOOpZfC7zY9GX6TmEZuQxfpDwxFLxoWnLK19DCh4vuqYP4iw== build@travis-ci.org"
           ]
         },
         "replicas": 1
