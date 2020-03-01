@@ -40,6 +40,6 @@ script:
 # Deploy all services and pods.
 - kubectl apply -f course-03/exercises/udacity-c3-deployment/k8s/
 # Make sure created pod is scheduled and running.
-- JSONPATH='{range .items[*]}{@.metadata.name}:{range @.status.conditions[*]}{@.type}={@.status};{end}{end}'; until kubectl -n default get pods -lapp=udagram-app -o jsonpath="$JSONPATH" 2>&1 | grep -q "Ready=True"; do sleep 1;echo "waiting for Udagram app deployment to be available"; kubectl get pods -n default; done
+- while [[ $(kubectl get pods -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}') != "True" ]]; do echo "waiting for pod" && sleep 1; done
 # Get detailed pod info.
 - kubect get pod -o wide
