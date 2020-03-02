@@ -3,6 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: backend-feed
+    version: v2
   name: backend-feed
 spec:
   replicas: 3

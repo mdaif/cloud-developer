@@ -1,8 +1,7 @@
 language: minimal
 services: docker
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_75808e5b5cad_key -iv $encrypted_75808e5b5cad_iv
-  -in deploy_rsa.enc -out ~/.ssh/deploy_rsa -d
 - openssl aes-256-cbc -K $encrypted_75808e5b5cad_key -iv $encrypted_75808e5b5cad_iv
   -in deploy_rsa.enc -out ~/.ssh/deploy_rsa -d
 - eval "$(ssh-agent -s)"
@@ -17,11 +16,17 @@ before_install:
 - sudo mv ./kubectl /usr/local/bin/kubectl
 - export KUBECONFIG=$PWD/udacitycluster-kubeconfig
 install:
+# Build containers
 - docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
   build --parallel
+# Login to Docker
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml
-  push
+# Push containers
+- docker-compose -f course-03/exercises/udacity-c3-deployment/docker/docker-compose-build.yaml push
+
+# Deploy our services
 - kubectl apply -f course-03/exercises/udacity-c3-deployment/k8s/
+# Wait until all pods to become in Running state.
 - kubectl wait --for=condition=ready pod --all --timeout=600s
+# Get more details.
 - kubectl get pod -o wide
