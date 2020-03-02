@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     service: backend-feed
-    version: v2
+    version: v3
   name: backend-feed
 spec:
   replicas: 3
@@ -14,6 +14,7 @@ spec:
     metadata:
       labels:
         service: backend-feed
+        version: v3
     spec:
       containers:
       - image: mdaif/udacity-restapi-feed
