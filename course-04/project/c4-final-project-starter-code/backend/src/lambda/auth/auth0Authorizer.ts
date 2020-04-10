@@ -60,8 +60,7 @@ async function getCertificate(): Promise<string> {
     let cert = response.data.keys[0]["x5c"][0]
     // This is the only way to make it work :/
     cert = '-----BEGIN CERTIFICATE-----\n' + cert + '\n-----END CERTIFICATE-----' 
-    logger.info('CERTIFICATE: ' + cert)
-    logger.info('TYPE: ' + typeof(cert))
+
     return cert
 }
 
