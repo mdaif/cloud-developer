@@ -22,10 +22,15 @@ provider:
         - dynamodb:Query
         - dynamodb:PutItem
         - dynamodb:GetItem
+        - dynamodb:UpdateItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODO_TABLE}
     - Effect: Allow
       Action:
+        - dynamodb:Scan
         - dynamodb:Query
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:UpdateItem
       Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODO_TABLE}/index/${self:provider.environment.TODO_INDEX}
 functions:
   Auth:
@@ -112,9 +117,9 @@ resources:
         LocalSecondaryIndexes:
           - IndexName: ${self:provider.environment.TODO_INDEX}
             KeySchema:
-            - AttributeName: userId
-              KeyType: HASH
-            - AttributeName: todoId
-              KeyType: RANGE
+              - AttributeName: userId
+                KeyType: HASH
+              - AttributeName: todoId
+                KeyType: RANGE
             Projection:
               ProjectionType: ALL
