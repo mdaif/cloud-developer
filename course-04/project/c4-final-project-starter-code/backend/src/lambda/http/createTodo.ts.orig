@@ -3,18 +3,41 @@ import 'source-map-support/register'
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda'
 
 import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
+<<<<<<< HEAD
+import * as AWS  from 'aws-sdk'
+import * as uuid from 'uuid'
+
+const docClient = new AWS.DynamoDB.DocumentClient()
+const ToDoTable = process.env.TODO_TABLE
+=======
 import { createLogger } from '../../utils/logger'
 import { createTodo } from '../../businessLogic/todos'
 
 const logger = createLogger('createTodo')
+>>>>>>> feature-course-04-project
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   logger.info('Processing event: ', event)
   const newTodo: CreateTodoRequest = JSON.parse(event.body)
+<<<<<<< HEAD
+  const todoId = uuid.v4()
+  const createdAt = new Date().toISOString()
+  const newItem = {
+    todoId,
+    createdAt,
+    ...newTodo
+  }
+  await docClient.put({
+    TableName: ToDoTable,
+    Item: newItem
+  }).promise()
+
+=======
   const newItem = await createTodo(newTodo, event)
   
   logger.debug('Deleting userId property from newItem before returning the result')
   delete newItem.userId
+>>>>>>> feature-course-04-project
 
   return {
     statusCode: 201,

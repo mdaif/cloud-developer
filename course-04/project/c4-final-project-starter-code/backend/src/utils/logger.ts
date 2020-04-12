@@ -8,7 +8,10 @@ import * as winston from 'winston'
 export function createLogger(loggerName: string) {
   return winston.createLogger({
     level: 'info',
-    format: winston.format.json(),
+    format: winston.format.combine(
+      winston.format.splat(),
+      winston.format.simple()
+    ),
     defaultMeta: { name: loggerName },
     transports: [
       new winston.transports.Console()

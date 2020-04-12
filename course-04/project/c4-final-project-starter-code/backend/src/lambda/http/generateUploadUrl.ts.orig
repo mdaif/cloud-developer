@@ -1,5 +1,15 @@
-import 'source-map-support/register'
+// import 'source-map-support/register'
 
+<<<<<<< HEAD
+// import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
+
+// export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+//   const todoId = event.pathParameters.todoId
+
+//   // TODO: Return a presigned URL to upload a file for a TODO item with the provided id
+//   return undefined
+// }
+=======
 import { APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler } from 'aws-lambda'
 import { getAttachmentUploadUrl } from '../../businessLogic/attachments';
 import { createLogger } from '../../utils/logger'
@@ -21,3 +31,4 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
         })
     }
 }
+>>>>>>> feature-course-04-project
