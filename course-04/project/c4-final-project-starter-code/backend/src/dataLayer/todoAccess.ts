@@ -90,13 +90,12 @@ export class TodoAccess {
           createdAt
         },
         ConditionExpression: "todoId = :todoId",
-        UpdateExpression: "set #name = :name, dueDate=:dueDate, done=:done, attachmentUrl = :attachmentUrl",
+        UpdateExpression: "set #name = :name, dueDate=:dueDate, done=:done",
         ExpressionAttributeValues:{
           ":name": updatedTodo.name,
           ":dueDate": updatedTodo.dueDate,
           ":done": updatedTodo.done,
           ":todoId": todoId,
-          ":attachmentUrl": updatedTodo.attachmentUrl
         },
         ExpressionAttributeNames: {
             "#name": "name"
