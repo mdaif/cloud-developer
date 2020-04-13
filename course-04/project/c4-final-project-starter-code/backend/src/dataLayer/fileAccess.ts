@@ -2,8 +2,6 @@ import * as AWS  from 'aws-sdk'
 import { imagesBucket, urlExpiration } from '../configs';
 import { createLogger } from '../utils/logger'
 
-const AWSXRay = require('aws-xray-sdk')
-const XAWS = AWSXRay.captureAWS(AWS)
 const logger = createLogger('getTodos')
 
 
@@ -24,7 +22,7 @@ export class FileAccess {
 
 function createS3Client(){
     // Can be modified to mock offline S3 behavior
-    return new XAWS.S3({
+    return new AWS.S3({
         'signatureVersion': 'v4'
     })
 }
